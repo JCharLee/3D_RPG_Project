@@ -407,7 +407,7 @@ namespace KevinIglesias
             //SHOW CONTROLS WINDOW
             if(Input.GetKeyDown(KeyCode.Escape))
             {
-                controlsWindow.SetActive(!controlsWindow.active);
+                controlsWindow.SetActive(!controlsWindow.activeSelf);
             }
         }
         
