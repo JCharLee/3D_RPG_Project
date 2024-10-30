@@ -55,6 +55,8 @@ public class PlayerInput : MonoBehaviour
                 StartCoroutine(Click(1));
             clickTime = 0f;
         }
+
+        Cursor.lockState = leftDrag || rightDrag ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
     IEnumerator Click(int num)
