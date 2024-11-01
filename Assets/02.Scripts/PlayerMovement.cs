@@ -12,37 +12,30 @@ public class PlayerMovement : MonoBehaviour
     public float groundedRadius = 0.28f;
     public LayerMask groundLayer;
 
+    // 애니메이션 ID
     int speedAnim = Animator.StringToHash("Speed");
     int groundedAnim = Animator.StringToHash("Grounded");
     int jumpAnim = Animator.StringToHash("Jump");
     int fallAnim = Animator.StringToHash("Fall");
 
+    // 컴포넌트
     Animator anim;
-    Rigidbody rb;
-    PlayerInput input;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
-        input = GetComponent<PlayerInput>();
     }
 
     void Update()
     {
+        Move();
         Jump();
         GroundedCheck();
     }
 
-    void FixedUpdate()
-    {
-        Move();
-    }
-
     void Move()
     {
-        Vector3 moveDir = new Vector3(input.move.x, 0f, input.move.y).normalized;
-        rb.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
+        
     }
 
     void Jump()
@@ -50,12 +43,6 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
         {
             anim.SetBool(jumpAnim, false);
-
-            if (input.jump)
-            {
-                rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-                anim.SetBool(jumpAnim, true);
-            }
         }
     }
 
